@@ -2,6 +2,4 @@
 
 ###
 
-An application to manage babershops appointments and schedueling 
-
-:construction: Under construction :construction:
+<p align="center">:construction: Under construction :construction:</p>
