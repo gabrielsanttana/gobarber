@@ -23,6 +23,10 @@ class AppointmentsRepository {
 
     return isDateAlreadyBooked || null;
   }
+
+  public getAllAppointments() {
+    return this.appointments;
+  }
 }
 
 export default AppointmentsRepository;
