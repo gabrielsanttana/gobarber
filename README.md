@@ -1,4 +1,4 @@
-## <div align="center">GoBarber 💈</div>
+## <div align="center">💈 GoBarber</div>
 
 ###
 
