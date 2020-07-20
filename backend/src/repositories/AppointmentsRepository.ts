@@ -14,19 +14,19 @@ class AppointmentsRepository {
   }
 
   public create({provider, date}: CreateAppointmentDTO): Appointment {
-    const appointment = new Appointment(provider, date);
+    const appointment = new Appointment({provider, date});
 
     this.appointments.push(appointment);
 
     return appointment;
   }
 
-  public isDateAlreadyBooked(date: Date): Appointment | null {
+  public isDateAlreadyBooked(date: Date) {
     const isDateAlreadyBooked = this.appointments.find((appointment) =>
       isEqual(appointment.date, date),
     );
 
-    return isDateAlreadyBooked || null;
+    return isDateAlreadyBooked;
   }
 
   public getAllAppointments() {

@@ -13,7 +13,7 @@ class CreateAppointmentService {
   constructor(appointmentsRepository: AppointmentsRepository) {
     this.appointmentsRepository = appointmentsRepository;
   }
-  
+
   public execute({provider, date}: Request): Appointment {
     const appointmentDate = startOfHour(date);
 

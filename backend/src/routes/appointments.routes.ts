@@ -5,7 +5,9 @@ import CreateAppointmentService from '../services/CreateAppointmentService';
 
 const appointmentsRouter = Router();
 const appointmentsRepository = new AppointmentsRepository();
-const createAppointmentService = new CreateAppointmentService(appointmentsRepository);
+const createAppointmentService = new CreateAppointmentService(
+  appointmentsRepository,
+);
 
 appointmentsRouter.get('/', (request: Request, response: Response) => {
   const appointments = appointmentsRepository.getAllAppointments();
@@ -14,13 +16,20 @@ appointmentsRouter.get('/', (request: Request, response: Response) => {
 });
 
 appointmentsRouter.post('/', (request: Request, response: Response) => {
-  const {provider, date} = request.body;
+  try {
+    const {provider, date} = request.body;
 
-  const parsedDate = parseISO(date);
-  
-  const appointment = createAppointmentService.execute({provider, date: parsedDate});
+    const parsedDate = parseISO(date);
 
-  return response.status(200).json(appointment);
+    const appointment = createAppointmentService.execute({
+      provider,
+      date: parsedDate,
+    });
+
+    return response.status(200).json(appointment);
+  } catch (error) {
+    return response.status(400).json({error: error.message});
+  }
 });
 
 export default appointmentsRouter;
