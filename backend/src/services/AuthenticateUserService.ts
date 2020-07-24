@@ -2,6 +2,7 @@ import {getRepository} from 'typeorm';
 import {compare} from 'bcrypt';
 import {sign} from 'jsonwebtoken';
 import User from '../models/User';
+import authConfig from '../config/auth';
 
 interface Request {
   email: string;
@@ -20,22 +21,26 @@ class UserAuhenticationService {
     const user = await usersRepository.findOne({where: {email}});
 
     if (!user) {
-      throw Error('Incorrect email or password');
+      throw new Error('Incorrect email or password');
     }
 
     const passwordMatches = await compare(password, user.password);
 
     if (!passwordMatches) {
-      throw Error('Incorrect email or password');
+      throw new Error('Incorrect email or password');
     }
 
-    const token = sign({}, '4e4d6c332b6fe62a63afe56171fd3725', {
+    const {secret, expiresIn} = authConfig.jwt;
+
+    const token = sign({}, secret, {
       subject: user.id,
-      expiresIn: '1d',
+      expiresIn,
     });
 
+    const [userFirstName] = user.name.split(' ');
+
     return {
-      message: `Welcome, ${user.name}!`,
+      message: `Welcome, ${userFirstName}!`,
       token,
     };
   }
