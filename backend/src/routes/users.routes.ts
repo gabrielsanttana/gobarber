@@ -32,13 +32,11 @@ usersRouter.patch(
   upload.single('avatar'),
   async (request: Request, response: Response) => {
     try {
-      const {avatar} = request.body;
-
       const updateUserAvatarService = new UpdateUserAvatarService();
 
       const userWithUpdatedAvatar = await updateUserAvatarService.execute({
         user_id: request.user.id,
-        avatarFilename: avatar,
+        avatarFilename: request.file.filename,
       });
 
       delete userWithUpdatedAvatar.password;
