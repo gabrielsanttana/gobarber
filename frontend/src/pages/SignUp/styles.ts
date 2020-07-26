@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import loginBackground from '../../assets/login-background.png';
+import signupBackground from '../../assets/signup-background.png';
 
 export const Container = styled.div`
   height: 100vh;
@@ -30,27 +30,23 @@ export const Content = styled.div`
         margin-top: 8px;
       }
     }
+  }
 
-    a {
-      display: block;
-      margin-top: 24px;
-      color: #f4ede8;
-      text-decoration: none;
-      transition: filter 0.2s;
+  a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 24px;
+    color: #f4ede8;
+    text-decoration: none;
+    transition: filter 0.2s;
 
-      &:hover {
-        filter: brightness(85%);
-      }
+    svg {
+      margin-right: 6px;
+    }
 
-      & + a {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-
-        svg {
-          margin-right: 6px;
-        }
-      }
+    &:hover {
+      filter: brightness(85%);
     }
   }
 
@@ -70,6 +66,6 @@ export const Content = styled.div`
 
 export const Background = styled.div`
   flex: 1;
-  background: url(${loginBackground}) no-repeat center;
+  background: url(${signupBackground}) no-repeat center;
   background-size: cover;
 `;
