@@ -1,5 +1,6 @@
 import React from 'react';
 import {FiLogIn, FiLock, FiMail} from 'react-icons/fi';
+import {Form} from '@unform/web';
 import {Container, Content, Background} from './styles';
 import logo from '../../assets/logo.svg';
 import Button from '../../components/Button';
@@ -11,7 +12,7 @@ const Login: React.FC = () => {
       <Content>
         <img src={logo} alt="logo" />
 
-        <form>
+        <Form initialData={{}} onSubmit={() => {}}>
           <h1>Faça seu login</h1>
 
           <Input
@@ -36,7 +37,7 @@ const Login: React.FC = () => {
             <FiLogIn />
             Cadastrar-se
           </a>
-        </form>
+        </Form>
       </Content>
 
       <Background />
