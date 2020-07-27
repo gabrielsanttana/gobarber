@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useCallback} from 'react';
 import {FiLogIn, FiLock, FiMail} from 'react-icons/fi';
 import {Form} from '@unform/web';
 import {Container, Content, Background} from './styles';
@@ -7,7 +7,7 @@ import Button from '../../components/Button';
 import Input from '../../components/Input';
 
 const Login: React.FC = () => {
-  function handleSubmit(formData: object): void {}
+  const handleSubmit = useCallback((formData: object): void => {}, []);
 
   return (
     <Container>
