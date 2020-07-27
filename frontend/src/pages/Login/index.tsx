@@ -7,12 +7,14 @@ import Button from '../../components/Button';
 import Input from '../../components/Input';
 
 const Login: React.FC = () => {
+  function handleSubmit(formData: object): void {}
+
   return (
     <Container>
       <Content>
         <img src={logo} alt="logo" />
 
-        <Form initialData={{}} onSubmit={() => {}}>
+        <Form initialData={{}} onSubmit={handleSubmit}>
           <h1>Faça seu login</h1>
 
           <Input
