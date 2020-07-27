@@ -32,9 +32,9 @@ const Login: React.FC = () => {
 
           <a href="reset">Esqueci minha senha</a>
 
-          <a href="reset">
+          <a href="/cadastrar">
             <FiLogIn />
-            Registrar-se
+            Cadastrar-se
           </a>
         </form>
       </Content>
