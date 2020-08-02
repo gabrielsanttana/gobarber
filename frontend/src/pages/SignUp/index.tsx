@@ -1,26 +1,38 @@
-import React, {useCallback} from 'react';
+import React, {useCallback, useRef} from 'react';
 import {FiArrowLeft, FiLock, FiMail} from 'react-icons/fi';
+import {FormHandles} from '@unform/core';
 import {Form} from '@unform/web';
 import * as Yup from 'yup';
 import {Container, Content, Background} from './styles';
 import logo from '../../assets/logo.svg';
 import Button from '../../components/Button';
 import Input from '../../components/Input';
+import getValidationErrors from '../../utils/getValidationErrors';
 
 const Signup: React.FC = () => {
+  const formRef = useRef<FormHandles>(null);
+
   const handleSubmit = useCallback(async (formData: object) => {
+    formRef.current?.setErrors({});
+
     try {
       const dataValidationSchema = Yup.object().shape({
-        name: Yup.string().required(),
-        email: Yup.string().email().required(),
-        password: Yup.string().min(6).required(),
+        name: Yup.string().required('Nome obrigatório'),
+        email: Yup.string()
+          .email('Digite um e-mail válido')
+          .required('E-mail obrigatório'),
+        password: Yup.string()
+          .min(6, 'A senha deve conter no mínimo 6 dígitos')
+          .required('Senha obrigatória'),
       });
 
       await dataValidationSchema.validate(formData, {
         abortEarly: false,
       });
     } catch (error) {
-      console.log(error);
+      const validationErrors = getValidationErrors(error);
+
+      formRef.current?.setErrors(validationErrors);
     }
   }, []);
 
