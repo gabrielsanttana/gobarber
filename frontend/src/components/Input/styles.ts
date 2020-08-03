@@ -3,6 +3,7 @@ import styled, {css} from 'styled-components';
 interface ButtonContainerProps {
   isFocused: boolean;
   isFilled: boolean;
+  hasError: boolean;
 }
 
 export const Container = styled.div<ButtonContainerProps>`
@@ -14,6 +15,12 @@ export const Container = styled.div<ButtonContainerProps>`
   padding: 16px;
   display: flex;
   align-items: center;
+
+  ${(props) =>
+    props.hasError &&
+    css`
+      border-color: #c53030;
+    `}
 
   ${(props) =>
     props.isFocused &&
@@ -42,5 +49,13 @@ export const Container = styled.div<ButtonContainerProps>`
 
   svg {
     margin-right: 16px;
+  }
+`;
+
+export const Error = styled.div`
+  height: 20px;
+
+  svg {
+    margin: 0;
   }
 `;
