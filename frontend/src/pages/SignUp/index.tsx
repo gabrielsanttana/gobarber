@@ -17,13 +17,14 @@ const Signup: React.FC = () => {
 
     try {
       const dataValidationSchema = Yup.object().shape({
-        name: Yup.string().required('Nome obrigatório'),
+        username: Yup.string().required('Nome obrigatório'),
         email: Yup.string()
           .email('Digite um e-mail válido')
           .required('E-mail obrigatório'),
-        password: Yup.string()
-          .min(6, 'A senha deve conter no mínimo 6 dígitos')
-          .required('Senha obrigatória'),
+        password: Yup.string().min(
+          6,
+          'A senha deve conter no mínimo 6 dígitos',
+        ),
       });
 
       await dataValidationSchema.validate(formData, {
@@ -43,7 +44,7 @@ const Signup: React.FC = () => {
       <Content>
         <img src={logo} alt="logo" />
 
-        <Form initialData={{}} onSubmit={handleSubmit}>
+        <Form ref={formRef} initialData={{}} onSubmit={handleSubmit}>
           <h1>Faça seu cadastro</h1>
 
           <Input
