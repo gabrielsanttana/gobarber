@@ -7,7 +7,7 @@ const Router: React.FC = () => {
   return (
     <BrowserRouter>
       <Route exact path="/" component={Login} />
-      <Route exact path="/cadastrar" component={SignUp} />
+      <Route path="/cadastrar" component={SignUp} />
     </BrowserRouter>
   );
 };
